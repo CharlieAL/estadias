@@ -1,0 +1,21 @@
+POST http://localhost:3000/api/productos/nuevo
+content-type: application/json
+
+{
+  "NumParteGen":"43x43 CRATE",
+  "Description":"Crate 43 x 43 x 30",
+  "partNumber":"43x43 CRATE",
+  "Category":"Crates",
+  "Details":"43x43x30 CRATE",
+  "Alias":"a",
+  "Customer":"Balden",
+  "Buyer":"BL",
+  "Price":"235.00",
+  "StockMin":"0",
+  "Stacking":"1",
+  "StackVol":"0",
+  "Weight":"0",
+  "LaborTime":"",
+  "Obsolete":true,
+  "Username":"carlos"
+}
