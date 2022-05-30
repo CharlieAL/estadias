@@ -4,36 +4,48 @@ import Layout from 'components/Layout'
 import { Admin } from 'components/category/Componentes'
 import FormNuevo from 'components/componentes/nuevoComponente'
 import { useRouter } from 'next/router'
+import FormEditar from 'components/componentes/editarComponente'
 
 export default function Productos() {
   const [user, setUser] = useState('')
-  const [open, setOpen] = useState({
-    nuevo: false,
-  })
+  const [nuevo, setNuevo] = useState(false)
+  const [editar, setEditar] = useState(false)
   const router = useRouter()
   useEffect(() => {
     const user = getUser()
     if (user) {
       setUser(user)
     } else {
-      router.push('/')
+      router.replace('/')
     }
   }, [router])
 
 
-  const handleChange = (name,value) => setOpen({...open,[name]:value})
+  const handleOpen = (name) => {
+    if (name ==='editar') {
+      setNuevo(false)
+      setEditar(!editar)
+    }else if (name ==='nuevo'){
+      setNuevo(!nuevo)
+      setEditar(false)
+    }
+  }
 
   const renderForms = () => {
-    if (open.nuevo) {
-      return <FormNuevo user={user}/>
-    }else if (open.endradas){
-      
+    if (nuevo) {
+      return <FormNuevo user={user} 
+      />
+    }else if (editar){
+      return <FormEditar user={user}/>
     }
   }
 
   const levelUserAndRender = (level) => {
     if (level === 'admin') {
-      return <Admin admin1={() => handleChange("nuevo",!open.nuevo)} />
+      return <Admin 
+      admin1={() => handleOpen('nuevo')} 
+      admin2={() => handleOpen('editar')} 
+      />
     } else if (level === 'aduanas') {
       return adsda
     }

@@ -23,12 +23,6 @@ export default function FormNuevo({ user,productos }) {
   const [checkbox, setCheckbox] = useState(false)
   const [partNumber, setPartNumber] = useState('')
 
-  // useEffect(() => {
-  //   getProducts().then((products) => {
-  //     setProductos(products)
-  //   })
-  // }, [])
-
   const handleSubmit = (e) => {
     e.preventDefault()
     const body = {
@@ -72,7 +66,7 @@ export default function FormNuevo({ user,productos }) {
     try {
       let numPartGenerico = e.target.value
       setNumPartGen(numPartGenerico)
-      productos.filter((items) => {
+      productos.find((items) => {
         if (items.NumParteGen === numPartGenerico) {
           setDescription(items.Description)
           setDetails(items.Details)
@@ -91,9 +85,10 @@ export default function FormNuevo({ user,productos }) {
       <div className='w-full flex place-content-center'>
         <div className=''>
           <DataList
+          id='numPartGen'
             label={'Núm Parte Genérico'}
             onChange={handleDataList}
-            productos={productos}
+            data={productos}
             value={numPartGen}
           />
           <Textarea

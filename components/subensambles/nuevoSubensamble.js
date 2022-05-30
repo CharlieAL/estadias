@@ -2,9 +2,10 @@ import Button from 'components/Button'
 import DataList from 'components/Datalist'
 import Input from 'components/Input'
 import Textarea from 'components/Textarea'
+import nextConfig from 'next.config'
 import { useState, useEffect } from 'react'
 import {
-  createComponent,
+  createSubensamble,
   getCatCustom,
   getCategory,
   getSupplier
@@ -15,10 +16,12 @@ export default function FormNuevo({ user }) {
   const [catCustomData, setCatCustomData] = useState([])
   const [categoryData, setCategoryData] = useState([])
 
-  const [componente, setComponente] = useState({
-    itemNumber: '',
+  const [message, setMessage] = useState(false)
+
+  const [subensamble, setSubensamble] = useState({
+    subAssyNumber: '',
     apfItemNumer: '',
-    itemDescription: '',
+    SubAssyDescription: '',
     minStock: '',
     bulk: '',
     supplier: '',
@@ -32,7 +35,7 @@ export default function FormNuevo({ user }) {
     UOM: '',
     Active: false,
     MXmfg: false,
-    User: user.name
+    Username: user.name
   })
 
   useEffect(() => {
@@ -42,77 +45,81 @@ export default function FormNuevo({ user }) {
   }, [])
 
   const handleChange = (name, value) =>
-    setComponente({ ...componente, [name]: value })
+    setSubensamble({ ...subensamble, [name]: value })
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    createComponent(componente).then((data) =>{
-      console.log(data)
-      setComponente({
-        itemNumber: '',
-        apfItemNumer: '',
-        itemDescription: '',
-        minStock: '',
-        bulk: '',
-        supplier: '',
-        catCustom: '',
-        category: '',
-        price: '',
-        weight: '',
-        fracAranceleria: '',
-        IdAduanas: '',
-        quantity: '',
-        UOM: '',
-        Active: false,
-        MXmfg: false,
+    createSubensamble(subensamble)
+      .then((data) => {
+        setSubensamble({
+          subAssyNumber: '',
+          apfItemNumer: '',
+          SubAssyDescription: '',
+          minStock: '',
+          bulk: '',
+          supplier: '',
+          catCustom: '',
+          category: '',
+          price: '',
+          weight: '',
+          fracAranceleria: '',
+          IdAduanas: '',
+          quantity: '',
+          UOM: '',
+          Active: false,
+          MXmfg: false
+        })
       })
-    }).catch((error) => console.log(error))
+      .catch(({ response }) => {
+        const { error } = response.data
+        console.log(error)
+      })
   }
-  
-  
   return (
     <form onSubmit={handleSubmit} className='text-center'>
       <div className='w-full flex place-content-center'>
         <div className=''>
           <Input
-            label={'ItemNumber'}
-            value={componente.itemNumber}
-            onChange={({ target }) => handleChange('itemNumber', target.value)}
+            label={'subAssyNumber'}
+            value={subensamble.subAssyNumber}
+            onChange={({ target }) =>
+              handleChange('subAssyNumber', target.value)
+            }
           />
           <Input
             label={'AFPItemNumber'}
-            value={componente.apfItemNumer}
+            value={subensamble.apfItemNumer}
             onChange={({ target }) =>
               handleChange('apfItemNumer', target.value)
             }
           />
           <Textarea
-            label={'Item Description'}
-            value={componente.itemDescription}
+            label={'SubAssyDescription'}
+            value={subensamble.SubAssyDescription}
             onChange={({ target }) =>
-              handleChange('itemDescription', target.value)
+              handleChange('SubAssyDescription', target.value)
             }
           />
           <Input
             label={'MinStock'}
-            value={componente.minStock}
+            value={subensamble.minStock}
             onChange={({ target }) => handleChange('minStock', target.value)}
           />
           <Input
             label={'Bulk'}
-            value={componente.bulk}
+            value={subensamble.bulk}
             onChange={({ target }) => handleChange('bulk', target.value)}
           />
           <DataList
             label={'Supplier'}
-            value={componente.supplier}
+            value={subensamble.supplier}
             data={supplierData}
             id='supplier'
             onChange={({ target }) => handleChange('supplier', target.value)}
           />
           <DataList
             label={'CatCustom'}
-            value={componente.catCustom}
+            value={subensamble.catCustom}
             data={catCustomData}
             id='catCustom'
             onChange={({ target }) => handleChange('catCustom', target.value)}
@@ -121,41 +128,41 @@ export default function FormNuevo({ user }) {
         <div className=''>
           <DataList
             label={'Category'}
-            value={componente.category}
+            value={subensamble.category}
             data={categoryData}
             id='category'
             onChange={({ target }) => handleChange('category', target.value)}
           />
           <Input
             label={'Price'}
-            value={componente.price}
+            value={subensamble.price}
             onChange={({ target }) => handleChange('price', target.value)}
           />
           <Input
             label={'Weight'}
-            value={componente.weight}
+            value={subensamble.weight}
             onChange={({ target }) => handleChange('weight', target.value)}
           />
           <Input
             label={'FracArancelaria'}
-            value={componente.fracAranceleria}
+            value={subensamble.fracAranceleria}
             onChange={({ target }) =>
               handleChange('fracAranceleria', target.value)
             }
           />
           <Input
             label={'ID_Aduanas'}
-            value={componente.IdAduanas}
+            value={subensamble.IdAduanas}
             onChange={({ target }) => handleChange('IdAduanas', target.value)}
           />
           <Input
             label={'Quantity'}
-            value={componente.quantity}
+            value={subensamble.quantity}
             onChange={({ target }) => handleChange('quantity', target.value)}
           />
           <Input
             label={'UOM'}
-            value={componente.UOM}
+            value={subensamble.UOM}
             onChange={({ target }) => handleChange('UOM', target.value)}
           />
           <Input

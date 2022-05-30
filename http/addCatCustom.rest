@@ -1,0 +1,9 @@
+POST http://localhost:3000/api/catCustom
+content-type: application/json
+
+{
+  "description":"Papel"
+}
+
+###
+GET  http://localhost:3000/api/catCustom

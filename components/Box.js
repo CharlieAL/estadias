@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Box({ children, type, onClick }) {
   const defaultStyle =
-    'active:translate-y-1  px-2 py-1 mx-2 my-1 shadow-md rounded-full border dark:border-gray-600 transition-colors dark:text-white transition-colors'
+    'active:translate-y-0.5  px-2 py-1 mx-2 my-1 shadow-md rounded-full border dark:border-gray-600 dark:text-white transition-colors'
   if (type === 'r') {
     return (
       <button

@@ -1,11 +1,11 @@
 import React from 'react'
 import Box from 'components/Box'
 
-export function Admin() {
+export function Admin({admin1,admin2,admin3,admin4,admin5,admin6,admin7,admin8,admin9,admin10,admin11}) {
   return (
     <div className='pt-24 pb-10 text-center'>
-      <Box type={'e'}>Nuevo</Box>
-      <Box type={'e'}>Editar</Box>
+      <Box onClick={admin1} type={'e'}>Nuevo</Box>
+      <Box onClick={admin2}  type={'e'}>Editar</Box>
       <Box type={'c'}>Entradas</Box>
       <Box type={'c'}>a Hold</Box>
       <Box type={'c'}>Scrap</Box>

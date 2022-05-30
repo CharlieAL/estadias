@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
   if (!passwordCorrect) {
     res.status(401).json({
-      error: 'Wrong password or wrong username'
+      error: 'Incorrect username or password',
     })
   } else {
     const userForToken = {

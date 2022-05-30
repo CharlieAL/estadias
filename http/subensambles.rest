@@ -1,0 +1,24 @@
+GET http://localhost:3000/api/subensamble
+###
+POST http://localhost:3000/api/subensamble
+content-type: application/json
+
+{
+  "Active": true,
+  "IdAduanas": "012506P",
+  "MXmfg": false,
+  "UOM": "LnFt",
+  "User": "pepe",
+  "apfItemNumer": "",
+  "bulk": "8",
+  "catCustom": "Papel"  ,
+  "category": "Paper",
+  "fracAranceleria": "vacío",
+  "SubAssyDescription": "PAPER. RIBBON. CAL .012 X 5.0625",
+  "subAssyNumber": "012506P",
+  "minStock": "118450",
+  "price": "0.000854", 
+  "quantity": "1",
+  "supplier": "Caraustar", 
+  "weight": "0.0204081"
+}

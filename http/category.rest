@@ -1,0 +1,9 @@
+POST http://localhost:3000/api/category
+content-type: application/json
+
+{
+  "description":"Paper"
+}
+
+###
+GET  http://localhost:3000/api/category
